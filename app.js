@@ -22,8 +22,8 @@ bot.on("guildMemberAdd", async member =>{
 
 bot.on("message", async message =>{
 	if(message.author.bot) return;
-	if(message.content === "888dpfjsfdkjdsflkjdsflkdsjfldjslrpjazp"){
-		message.channel.send('pong');
+	if(message.content === "Commande qui ne sert a rien sauf faire un ping... et en plus elle ne retourne rien !"){
+		
 	}
 })
 
