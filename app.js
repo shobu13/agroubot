@@ -9,7 +9,7 @@ bot.on("ready", function(){
 
 bot.on("guildMemberAdd", async member =>{
 	console.log(`${member.user.username} a rejoint le serveur !`)
-    let newRole = member.guild.roles.find(`name`, "Nouveaux");
+    let newRole = member.guild.roles.find(`name`, "Nouveau");
     if(!newRole) return console.log(`le role "Nouveaux" n'existe pas`)
     member.addRole(newRole)
     function supprNewRole() {
