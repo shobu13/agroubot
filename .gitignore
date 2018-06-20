@@ -1,3 +1,20 @@
 
 \.idea/
 \.node_module/
+node_modules/async-limiter/
+
+node_modules/discord\.js/
+
+node_modules/long/dist/
+
+node_modules/long/
+
+node_modules/prism-media/
+
+node_modules/safe-buffer/
+
+node_modules/snekfetch/
+
+node_modules/tweetnacl/
+
+node_modules/ws/
