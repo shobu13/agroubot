@@ -100,6 +100,10 @@ function exec_command(message) {
         console.log("nique toi");
         GUILD.channels.get(GENERAL_ID).send('<:NBNiquetoi:231846299710914567>');
     }
+    if(commande === '0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101')
+    {
+        GUILD.channels.get(GENERAL_ID).send(`scaimiateairaelxly ${EMOJI_AGROU}`);
+    }
     if (commande === 'help') {
         console.log("page d'aide");
         message.author.send(
