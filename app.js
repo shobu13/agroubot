@@ -1,3 +1,10 @@
+/*
+* Bot créer par Shobu et O-Yama, libre distribution autorisée.
+*
+* Version 1.0
+*
+*/
+
 const cron = require("node-cron");
 const Discord = require("discord.js");
 const tokenfile = require("./tokenfile.json");
@@ -58,17 +65,17 @@ BOT.on("guildMemberAdd", async member => {
     let newRole = member.guild.roles.find(`name`, NEW_ROLE_NAME);
     if (!newRole) return console.log(`le role ` + NEW_ROLE_NAME + `n'existe pas`);
     member.addRole(newRole);
+    member.Channel('228605170592776192');
 });
 
 BOT.on("message", async message => {
-    if (message.guild.id === GUILD_ID) {
+    if (message.channel.type === 'dm') {
         let message_time = timestamp_to_time(message.createdTimestamp);
         let message_content = message.content;
         let message_author = message.author;
-        let message_channel = message.channel;
         let message_attachement = message.attachments;
         let message_attachement_id = message_attachement.keyArray()[0];
-        console.log(message_channel.name, "-", message_time, "-", message_content, "-", message_author.username);
+        console.log(message_time, "-", message_content, "-", message_author.username);
         if (message.content[0] === COMMAND_PREFIX)
             exec_command(message);
         if (message_attachement_id !== undefined) {
@@ -76,8 +83,26 @@ BOT.on("message", async message => {
             console.log("\t", message_attachement_id);
             console.log("\t", message_attachement.get(message_attachement_id).url);
         }
-        if (message.author.bot) return;
-        if (message.content === "Commande qui ne sert a rien sauf faire un ping... et en plus elle ne retourne rien !") {
+    }
+    if (message.channel.type === 'text') {
+        if (message.guild.id === GUILD_ID) {
+            let message_time = timestamp_to_time(message.createdTimestamp);
+            let message_content = message.content;
+            let message_author = message.author;
+            let message_channel = message.channel;
+            let message_attachement = message.attachments;
+            let message_attachement_id = message_attachement.keyArray()[0];
+            console.log(message_channel.name, "-", message_time, "-", message_content, "-", message_author.username);
+            if (message.content[0] === COMMAND_PREFIX)
+                exec_command(message);
+            if (message_attachement_id !== undefined) {
+                console.log("\t", "Attachement info : ", "\n\r");
+                console.log("\t", message_attachement_id);
+                console.log("\t", message_attachement.get(message_attachement_id).url);
+            }
+            if (message.author.bot) return;
+            if (message.content === "Commande qui ne sert a rien sauf faire un ping... et en plus elle ne retourne rien !") {
+            }
         }
     }
 });
@@ -86,7 +111,10 @@ BOT.login(tokenfile.token);
 
 function exec_command(message) {
     console.log("exec commande");
-    let commande = get_char_between(message.content, 1);
+    let commande_raw = get_char_between(message.content, 1).split(" ");
+    let commande = commande_raw[0];
+    commande_raw.shift();
+    let arguments = commande_raw;
     console.log("\t", "commande=", commande);
     if (commande === 'users_timestamp') {
         console.log("\t", "users_timestamp command");
@@ -100,8 +128,7 @@ function exec_command(message) {
         console.log("nique toi");
         GUILD.channels.get(GENERAL_ID).send('<:NBNiquetoi:231846299710914567>');
     }
-    if(commande === '0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101')
-    {
+    if (commande === '0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101') {
         GUILD.channels.get(GENERAL_ID).send(`scaimiateairaelxly ${EMOJI_AGROU}`);
     }
     if (commande === 'help') {
@@ -111,6 +138,22 @@ function exec_command(message) {
             '>**!bonjour** : dit bonjour au bot, il vous répondra à sa façon\r' +
             '>**!0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101** : 0110100001100001011011000110011000100000011011000110100101100110011001010010000000110011\r'
         );
+    }
+
+    let admin_id_array = GUILD.roles.get('216542507415109633').members.keyArray();
+    let modo_id_array = GUILD.roles.get('216542995426574336').members.keyArray();
+    let message_author_id = GUILD.member(message.author).id;
+    console.log(typeof admin_id_array);
+    if (find_in_array(admin_id_array, message_author_id) || find_in_array(modo_id_array, message_author_id) || message_author_id === '189806101506686976') {
+        if (commande === 'say') {
+            GUILD.channels.get(GENERAL_ID).send(arguments.join(" "));
+        }
+        if (commande === 'help') {
+            console.log("page d'aide");
+            message.author.send(
+                '>**!say** : permet de faire parler le bot\r'
+            );
+        }
     }
 }
 
@@ -166,3 +209,9 @@ function get_char_between(string, pos1, pos2 = -1) {
     }
 }
 
+function find_in_array(array, iteration) {
+    let found = array.find(function (element) {
+        return element === iteration
+    });
+    return found !== undefined;
+}
