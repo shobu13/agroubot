@@ -94,7 +94,7 @@ function exec_command(message) {
     }
     if (commande === 'bonjour') {
         console.log("nique toi");
-        GUILD.channels.get(GENERAL_ID).send(`non ! ${EMOJI_NIQUE}`);
+        GUILD.channels.get(GENERAL_ID).send('\:NBNiquetoi:');
     }
 }
 
