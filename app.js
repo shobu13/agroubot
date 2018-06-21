@@ -96,6 +96,10 @@ function exec_command(message) {
         console.log("nique toi");
         GUILD.channels.get(GENERAL_ID).send('<:NBNiquetoi:231846299710914567>');
     }
+    if (commande === 'help') {
+        console.log("page d'aide");
+        message.user.send('<:NBNiquetoi:231846299710914567>');
+    }
 }
 
 function timestamp_to_time(timestamp) {
