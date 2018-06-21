@@ -12,6 +12,7 @@ const IDLE_TIME = 10;
 const NEW_ROLE_NAME = 'Nouveau';
 
 let EMOJI_AGROU;
+let EMOJI_NIQUE;
 
 let GUILD;
 let USERS_TIMESTAMP = new Map();
@@ -19,6 +20,7 @@ let USERS_TIMESTAMP = new Map();
 BOT.on("ready", function () {
     GUILD = BOT.guilds.get(GUILD_ID);
     EMOJI_AGROU = GUILD.emojis.find("name", "NBAgrou");
+    EMOJI_NIQUE = GUILD.emojis.find("name", "NBNiquetoi");
 
     const SOUTIENT_HEURE = '20';
     const SOUTIENT_MINUTE = '30';
@@ -88,6 +90,10 @@ function exec_command(message) {
     }
     if (commande === 'agrou') {
         console.log("agrou !");
+        GUILD.channels.get(GENERAL_ID).send(`Agrougrou ! ${EMOJI_AGROU}`);
+    }
+    if (commande === 'bonjour') {
+        console.log("nique toi");
         GUILD.channels.get(GENERAL_ID).send(`Agrougrou ! ${EMOJI_AGROU}`);
     }
 }
