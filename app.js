@@ -9,7 +9,7 @@ const GUILD_ID = '216542169089966080';
 const GENERAL_ID = '216542169089966080';
 const CHECK_TIME = 60000;
 const IDLE_TIME = 10;
-const NEW_ROLE_NAME = 'Nouveaux';
+const NEW_ROLE_NAME = 'Nouveau';
 
 let EMOJI_AGROU;
 
