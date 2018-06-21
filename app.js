@@ -11,6 +11,8 @@ const CHECK_TIME = 60000;
 const IDLE_TIME = 10;
 const NEW_ROLE_NAME = 'Nouveau';
 
+const BOT_ACTIVITY = '!help';
+
 let EMOJI_AGROU;
 let EMOJI_NIQUE;
 
@@ -31,6 +33,8 @@ BOT.on("ready", function () {
     const CONTRIBUTION_MINUTE = '00';
     const CONTRIBUTION_JOUR = '*/3';
     const CONTRIBUTION_MSG = `Si vous avez des idées d'améliorations, n'hésitez pas à MP nos chers administrateurs !${EMOJI_AGROU}`;
+
+    BOT.user.setActivity(BOT_ACTIVITY);
 
     console.log("le bot est en ligne");
     check_user_timestamp();
