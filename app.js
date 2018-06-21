@@ -5,8 +5,8 @@ const botconfig = require("./botconfig.json");
 
 const BOT = new Discord.Client({disableEveryone: true});
 const COMMAND_PREFIX = '!';
-const GUILD_ID = '421716356933615617';
-const GENERAL_ID = '459224796782264322';
+const GUILD_ID = '';
+const GENERAL_ID = '';
 const CHECK_TIME = 60000;
 const IDLE_TIME = 10;
 const NEW_ROLE_NAME = 'Nouveau';
