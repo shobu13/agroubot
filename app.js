@@ -18,11 +18,11 @@ const CHECK_TIME = 60000;
 const IDLE_TIME = 10;
 const NEW_ROLE_NAME = 'Nouveau';
 
-const BOT_ACTIVITY = '!help';
-
 let EMOJI_AGROU;
 let EMOJI_NIQUE;
 
+let ACTIVITY;
+let ACTIVITY_FLIP_FLOP = false;
 let GUILD;
 let USERS_TIMESTAMP = new Map();
 
@@ -41,7 +41,7 @@ BOT.on("ready", function () {
     const CONTRIBUTION_JOUR = '*/3';
     const CONTRIBUTION_MSG = `Si vous avez des idées d'améliorations, n'hésitez pas à MP nos chers administrateurs !${EMOJI_AGROU}`;
 
-    BOT.user.setActivity(BOT_ACTIVITY);
+    BOT.user.setActivity("!help");
 
     console.log("le bot est en ligne");
     check_user_timestamp();
@@ -56,6 +56,21 @@ BOT.on("ready", function () {
     cron.schedule(CONTRIBUTION_MINUTE + " " + CONTRIBUTION_HEURE + " " + CONTRIBUTION_JOUR + " * *", function () {
         console.log("message contrib");
         GUILD.channels.get(GENERAL_ID).send(CONTRIBUTION_MSG);
+    });
+
+    cron.schedule("*/30 * * * * *", function () {
+        console.log("changement activité");
+        console.log("ACTIVITY =", ACTIVITY);
+        if(ACTIVITY_FLIP_FLOP === true)
+        {
+            BOT.user.setActivity("!help");
+            ACTIVITY_FLIP_FLOP = false;
+        }
+        else
+        {
+            BOT.user.setActivity(ACTIVITY);
+            ACTIVITY_FLIP_FLOP = true;
+        }
     });
 });
 
@@ -149,7 +164,8 @@ function exec_command(message) {
             GUILD.channels.get(GENERAL_ID).send(arguments.join(" "));
         }
         if (commande === 'activity') {
-            BOT.user.setActivity(arguments.join(" "));
+            ACTIVITY = arguments.join(" ")
+            BOT.user.setActivity(ACTIVITY);
         }
 
         if (commande === 'help') {
