@@ -148,6 +148,10 @@ function exec_command(message) {
         if (commande === 'say') {
             GUILD.channels.get(GENERAL_ID).send(arguments.join(" "));
         }
+        if (commande === 'activity') {
+            BOT.user.setActivity(arguments.join(" "));
+        }
+
         if (commande === 'help') {
             console.log("page d'aide");
             message.author.send(
