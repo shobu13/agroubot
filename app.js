@@ -94,7 +94,7 @@ function exec_command(message) {
     }
     if (commande === 'bonjour') {
         console.log("nique toi");
-        GUILD.channels.get(GENERAL_ID).send('\:NBNiquetoi:');
+        GUILD.channels.get(GENERAL_ID).send('<:NBNiquetoi:231846299710914567>');
     }
 }
 
