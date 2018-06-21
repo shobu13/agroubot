@@ -26,7 +26,7 @@ BOT.on("ready", function () {
 
     const SOUTIENT_HEURE = '20';
     const SOUTIENT_MINUTE = '30';
-    const SOUTIENT_MSG = `Vous pouvez chaque jour soutenir Need Backup financièrement contre un peu de votre temps en regardant quelques pubs sur Utip :NBAgrou: \n` +
+    const SOUTIENT_MSG = `Vous pouvez chaque jour soutenir Need Backup financièrement contre un peu de votre temps en regardant quelques pubs sur Utip ${EMOJI_AGROU} \n` +
         `https://www.utip.io/needbackup`;
 
     const CONTRIBUTION_HEURE = '17';
