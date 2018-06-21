@@ -120,7 +120,8 @@ function check_user_timestamp() {
         let timestamp = new Date(USERS_TIMESTAMP.get(id));
         let timestamp_now = new Date(Date.now());
         let delta_time = new Date(timestamp_now - timestamp);
-        console.log("delta= ", delta_time.getSeconds());
+        console.log("\t", id);
+        console.log("\t delta= ", `${delta_time.getSeconds()} mn et ${delta_time.getSeconds()} s`);
         if (delta_time.getMinutes() >= IDLE_TIME) {
             let member = BOT.guilds.get(GUILD_ID).members.get(id);
             member.removeRole(GUILD.roles.find(`name`, NEW_ROLE_NAME));
