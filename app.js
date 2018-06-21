@@ -94,7 +94,7 @@ function exec_command(message) {
     }
     if (commande === 'bonjour') {
         console.log("nique toi");
-        GUILD.channels.get(GENERAL_ID).send(`${EMOJI_NIQUE}`);
+        GUILD.channels.get(GENERAL_ID).send(EMOJI_NIQUE);
     }
 }
 
@@ -121,7 +121,7 @@ function check_user_timestamp() {
         let timestamp_now = new Date(Date.now());
         let delta_time = new Date(timestamp_now - timestamp);
         console.log("\t", id);
-        console.log("\t delta= ", `${delta_time.getSeconds()} mn et ${delta_time.getSeconds()} s`);
+        console.log("\t delta= ", `${delta_time.getMinutes()} mn et ${delta_time.getSeconds()} s`);
         if (delta_time.getMinutes() >= IDLE_TIME) {
             let member = BOT.guilds.get(GUILD_ID).members.get(id);
             member.removeRole(GUILD.roles.find(`name`, NEW_ROLE_NAME));
