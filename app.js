@@ -5,8 +5,8 @@ const botconfig = require("./botconfig.json");
 
 const BOT = new Discord.Client({disableEveryone: true});
 const COMMAND_PREFIX = '!';
-const GUILD_ID = '216542169089966080';
-const GENERAL_ID = '216542169089966080';
+const GUILD_ID = '421716356933615617';
+const GENERAL_ID = '459224796782264322';
 const CHECK_TIME = 60000;
 const IDLE_TIME = 10;
 const NEW_ROLE_NAME = 'Nouveau';
@@ -98,7 +98,11 @@ function exec_command(message) {
     }
     if (commande === 'help') {
         console.log("page d'aide");
-        message.user.send('<:NBNiquetoi:231846299710914567>');
+        message.author.send(
+            '>**!agrou** : provoque la colère du bot\r' +
+            '>**!bonjour** : dit bonjour au bot, il vous répondra à sa façon\r' +
+            '>**!0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101** : 0110100001100001011011000110011000100000011011000110100101100110011001010010000000110011\r'
+        );
     }
 }
 
