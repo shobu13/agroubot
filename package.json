@@ -6,6 +6,7 @@
   "author": "O-Yama",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "node-cron": "^1.2.1"
   }
 }

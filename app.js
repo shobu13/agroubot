@@ -1,13 +1,25 @@
+const cron = require("node-cron");
 const Discord = require("discord.js");
 const tokenfile = require("./tokenfile.json");
 const botconfig = require("./botconfig.json");
 
 const BOT = new Discord.Client({disableEveryone: true});
 const COMMAND_PREFIX = '!';
-const GUILD_ID = '421716356933615617';
-const CHECK_TIME = 60000;
-const IDLE_TIME = 10;
-const NEW_ROLE_NAME = 'Nouveau';
+const GUILD_ID = '216542169089966080';
+const GENERAL_ID = '216542169089966080';
+const CHECK_TIME = 10000;
+const IDLE_TIME = 1;
+const NEW_ROLE_NAME = 'Vous pouvez chaque jour soutenir Need Backup financièrement contre un peu de votre temps en regardant quelques pubs sur Utip :NBAgrou: \n' +
+    'https://www.utip.io/needbackup';
+
+const SOUTIENT_HEURE = '20';
+const SOUTIENT_MINUTE = '30';
+const SOUTIENT_MSG = 'test';
+
+const CONTRIBUTION_HEURE = '17';
+const CONTRIBUTION_MINUTE = '00';
+const CONTRIBUTION_JOUR = '*/3';
+const CONTRIBUTION_MSG = "Si vous avez des idées d'améliorations, n'hésitez pas à MP nos chers administrateurs !:NBAgrou:";
 
 let GUILD;
 let USERS_TIMESTAMP = new Map();
@@ -16,7 +28,18 @@ BOT.on("ready", function () {
     GUILD = BOT.guilds.get(GUILD_ID);
     console.log("le bot est en ligne");
     check_user_timestamp();
-    console.log(GUILD.name)
+    console.log(GUILD.name);
+
+    console.log("cronjob");
+    cron.schedule(SOUTIENT_MINUTE + " " + SOUTIENT_HEURE + " * * *", function () {
+        console.log("message promo");
+        GUILD.channels.get(GENERAL_ID).send(SOUTIENT_MSG);
+    });
+
+    cron.schedule(CONTRIBUTION_MINUTE + " " + CONTRIBUTION_HEURE + " "+ CONTRIBUTION_JOUR +" * *", function () {
+        console.log("message contrib");
+        GUILD.channels.get(GENERAL_ID).send(CONTRIBUTION_MSG);
+    });
 });
 
 BOT.on("guildMemberAdd", async member => {
@@ -58,6 +81,10 @@ function exec_command(message) {
     if (commande === 'users_timestamp') {
         console.log("\t", "users_timestamp command");
         console.log(USERS_TIMESTAMP);
+    }
+    if (commande === 'agrou') {
+        console.log("agrou !");
+        GUILD.channels.get(GENERAL_ID).send("Agrougrou ! :NBAgrou:");
     }
 }
 
@@ -111,3 +138,4 @@ function get_char_between(string, pos1, pos2 = -1) {
         return new_string;
     }
 }
+

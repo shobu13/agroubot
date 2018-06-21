@@ -18,3 +18,5 @@ node_modules/snekfetch/
 node_modules/tweetnacl/
 
 node_modules/ws/
+
+node_modules/node-cron/
