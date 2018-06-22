@@ -61,13 +61,11 @@ BOT.on("ready", function () {
     cron.schedule("*/30 * * * * *", function () {
         console.log("changement activité");
         console.log("ACTIVITY =", ACTIVITY);
-        if(ACTIVITY_FLIP_FLOP === true)
-        {
+        if (ACTIVITY_FLIP_FLOP === true) {
             BOT.user.setActivity("!help");
             ACTIVITY_FLIP_FLOP = false;
         }
-        else
-        {
+        else {
             BOT.user.setActivity(ACTIVITY);
             ACTIVITY_FLIP_FLOP = true;
         }
@@ -92,7 +90,7 @@ BOT.on("message", async message => {
         let message_attachement_id = message_attachement.keyArray()[0];
         console.log(message_time, "-", message_content, "-", message_author.username);
         if (message.content[0] === COMMAND_PREFIX)
-            exec_command(message);
+            exec_admin_commande(message);
         if (message_attachement_id !== undefined) {
             console.log("\t", "Attachement info : ", "\n\r");
             console.log("\t", message_attachement_id);
@@ -109,7 +107,11 @@ BOT.on("message", async message => {
             let message_attachement_id = message_attachement.keyArray()[0];
             console.log(message_channel.name, "-", message_time, "-", message_content, "-", message_author.username);
             if (message.content[0] === COMMAND_PREFIX)
+            {
                 exec_command(message);
+                exec_admin_commande(message);
+            }
+
             if (message_attachement_id !== undefined) {
                 console.log("\t", "Attachement info : ", "\n\r");
                 console.log("\t", message_attachement_id);
@@ -154,6 +156,15 @@ function exec_command(message) {
             '>**!0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101** : 0110100001100001011011000110011000100000011011000110100101100110011001010010000000110011\r'
         );
     }
+}
+
+function exec_admin_commande(message) {
+    console.log("exec ADMIN commande");
+    let commande_raw = get_char_between(message.content, 1).split(" ");
+    let commande = commande_raw[0];
+    commande_raw.shift();
+    let arguments = commande_raw;
+    console.log("\t", "commande=", commande);
 
     let admin_id_array = GUILD.roles.get('216542507415109633').members.keyArray();
     let modo_id_array = GUILD.roles.get('216542995426574336').members.keyArray();
@@ -164,7 +175,7 @@ function exec_command(message) {
             GUILD.channels.get(GENERAL_ID).send(arguments.join(" "));
         }
         if (commande === 'activity') {
-            ACTIVITY = arguments.join(" ")
+            ACTIVITY = arguments.join(" ");
             BOT.user.setActivity(ACTIVITY);
         }
 
