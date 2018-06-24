@@ -114,7 +114,6 @@ BOT.on("message", async message => {
             console.log(message_channel.name, "-", message_time, "-", message_content, "-", message_author.username);
             if (message.content[0] === COMMAND_PREFIX) {
                 exec_command(message);
-                exec_admin_commande(message);
             }
 
             if (message_attachement_id !== undefined) {
@@ -173,7 +172,7 @@ function exec_admin_commande(message) {
 
     let admin_id_array = GUILD.roles.get('216542507415109633').members.keyArray();
     let modo_id_array = GUILD.roles.get('216542995426574336').members.keyArray();
-    let message_author_id = GUILD.member(message.author).id;
+    let message_author_id = message.author.id;
     console.log(typeof admin_id_array);
     if (find_in_array(admin_id_array, message_author_id) || find_in_array(modo_id_array, message_author_id) || message_author_id === '189806101506686976') {
         if (commande === 'say') {
