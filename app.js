@@ -78,7 +78,6 @@ BOT.on("guildMemberAdd", async member => {
     let newRole = member.guild.roles.find(`name`, NEW_ROLE_NAME);
     if (!newRole) return console.log(`le role ` + NEW_ROLE_NAME + `n'existe pas`);
     member.addRole(newRole);
-    member.Channel('228605170592776192');
     member.user.send("Salut, bienvenu sur le serveur de Need Backup, tu doit attendre 10mn avant de pouvoir parler avec" +
         "les autres, n'hésite pas à lire les règles en attendant.")
 });
