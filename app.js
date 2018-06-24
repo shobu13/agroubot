@@ -79,6 +79,12 @@ BOT.on("guildMemberAdd", async member => {
     if (!newRole) return console.log(`le role ` + NEW_ROLE_NAME + `n'existe pas`);
     member.addRole(newRole);
     member.Channel('228605170592776192');
+    member.user.send("Salut, bienvenu sur le serveur de Need Backup, tu doit attendre 10mn avant de pouvoir parler avec" +
+        "les autres, n'hésite pas à lire les règles en attendant.")
+});
+
+BOT.on("guildMemberRemove", async member => {
+    USERS_TIMESTAMP.delete(member.user.id);
 });
 
 BOT.on("message", async message => {
@@ -106,8 +112,7 @@ BOT.on("message", async message => {
             let message_attachement = message.attachments;
             let message_attachement_id = message_attachement.keyArray()[0];
             console.log(message_channel.name, "-", message_time, "-", message_content, "-", message_author.username);
-            if (message.content[0] === COMMAND_PREFIX)
-            {
+            if (message.content[0] === COMMAND_PREFIX) {
                 exec_command(message);
                 exec_admin_commande(message);
             }
@@ -139,14 +144,14 @@ function exec_command(message) {
     }
     if (commande === 'agrou') {
         console.log("agrou !");
-        GUILD.channels.get(GENERAL_ID).send(`Agrougrou ! ${EMOJI_AGROU}`);
+        message.channel.send(`Agrougrou ! ${EMOJI_AGROU}`);
     }
     if (commande === 'bonjour') {
         console.log("nique toi");
-        GUILD.channels.get(GENERAL_ID).send('<:NBNiquetoi:231846299710914567>');
+        message.channel.send('<:NBNiquetoi:231846299710914567>');
     }
     if (commande === '0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101') {
-        GUILD.channels.get(GENERAL_ID).send(`scaimiateairaelxly ${EMOJI_AGROU}`);
+        message.channel.send(`scaimiateairaelxly ${EMOJI_AGROU}`);
     }
     if (commande === 'help') {
         console.log("page d'aide");
