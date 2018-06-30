@@ -148,6 +148,15 @@ function exec_command(message) {
         console.log("nique toi");
         message.channel.send('<:NBNiquetoi:231846299710914567>');
     }
+    if (commande === 'rhion')
+    {
+        message.channel.send({
+            files: [{
+                attachment: 'img/rhion.gif',
+                name: 'rhion.gif',
+            }]
+        })
+    }
     if (commande === '0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101') {
         message.channel.send(`scaimiateairaelxly ${EMOJI_AGROU}`);
     }
@@ -156,6 +165,7 @@ function exec_command(message) {
         message.author.send(
             '>**!agrou** : provoque la colère du bot\r' +
             '>**!bonjour** : dit bonjour au bot, il vous répondra à sa façon\r' +
+            '>**!rhion** : prey the suuuuuuun\r' +
             '>**!0111001101100101011011100111001100100000011001000110010100100000011011000110000100100000011101100110100101100101** : 0110100001100001011011000110011000100000011011000110100101100110011001010010000000110011\r'
         );
     }
@@ -185,7 +195,8 @@ function exec_admin_commande(message) {
         if (commande === 'help') {
             console.log("page d'aide");
             message.author.send(
-                '>**!say** : permet de faire parler le bot\r'
+                '>**!say** : permet de faire parler le bot\r' +
+                '>**!activity** : permet de définir à quel jeu joue le bot'
             );
         }
     }
