@@ -38,7 +38,7 @@ try {
             `https://www.utip.io/needbackup`;
 
         const CONTRIBUTION_HEURE = '17';
-        const CONTRIBUTION_MINUTE = '00';
+        const CONTRIBUTION_MINUTE = '0';
         const CONTRIBUTION_JOUR = '*/3';
         const CONTRIBUTION_MSG = `Si vous avez des idées d'améliorations, n'hésitez pas à MP nos chers administrateurs !${EMOJI_AGROU}`;
 
@@ -262,5 +262,6 @@ try {
     }
 }
 catch (e) {
+    console.log("some error append");
     console.log(e);
 }
