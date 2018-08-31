@@ -260,6 +260,8 @@ try {
         });
         return found !== undefined;
     }
+
+    BOT.on('error', console.error);
 }
 catch (e) {
     console.log("some error append");
